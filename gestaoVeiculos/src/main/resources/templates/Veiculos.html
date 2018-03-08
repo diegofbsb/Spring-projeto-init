@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Veiculos</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Lista de veiculos</h1>
+		</div>
+		
+		<div class="panel-body">
+		
+			<!-- Formulario com os campos serem preenchidos pelo usuário -->
+			<form class="form-inline" th:action="@{/processarForm}" method="POST" th:object="${veiculo}" style="margin: 20px 0">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Id" th:field="*{id}"/>
+					<input type="text" class="form-control" placeholder="Modelo" th:field="*{modelo}"/> 
+					<input type="text" class="form-control" placeholder="Marca" th:field="*{marca}"/>
+					<input type="text" class="form-control" placeholder="Tipo" th:field="*{tipo}"/>
+					<input type="text" class="form-control" placeholder="Cor" th:field="*{cor}"/>
+					<button type="submit" name="adicionar" class="btn btn-primary">Adicionar</button>
+					<button type="submit" name="alterar" class="btn btn-primary">Alterar</button>
+					<button type="submit" name="excluir" class="btn btn-primary">Excluir</button>
+				</div>
+			</form>
+			
+			<!-- Tabela de veículos -->
+			<table class="table" th:action="@{/veiculos}">
+				<tr th:each="veiculo : ${veiculos}">
+					<td th:text="${veiculo.id}"></td>
+					<td th:text="${veiculo.modelo}"></td>
+					<td th:text="${veiculo.marca}"></td>
+					<td th:text="${veiculo.tipo}"></td>
+					<td th:text="${veiculo.cor}"></td>
+				</tr>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Modelo</th>
+						<th>Marca</th>
+						<th>Tipo</th>
+						<th>Cor</th>
+					</tr>
+				</thead>
+
+			</table>
+
+			
+		</div>
+	</div>
+</body>
+</html>
